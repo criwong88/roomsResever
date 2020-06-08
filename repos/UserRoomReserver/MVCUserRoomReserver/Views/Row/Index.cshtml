@@ -1,0 +1,104 @@
+﻿@model IEnumerable<MVCUserRoomReserver.Models.mvcRowModel>
+@{
+    ViewBag.Title = "Reservas";
+}
+
+
+@using (Html.BeginForm())
+{
+        <input type="text" name="destinationReserve" value="@ViewBag.idr" />
+        <input type="submit" value="Filtrar" class="btn btn-info" />
+
+        <h2>@ViewBag.Title</h2>
+        <p>
+            <a href="@Url.Action("AddOrEditRow", "Row")" class="btn btn-info"><i class="fa fa-plus"></i> Crear Nuevo</a>
+        </p>
+        <table class="table table-striped">
+            <thead class="table-heading">
+                <tr class="text-center">
+                    <th>
+                        @Html.DisplayNameFor(model => model.idUser)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idRoom)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dateReserve)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.numberPerson)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.destinationReserve)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.observations)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.stateReserve)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idUser)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idRoom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateReserve)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numberPerson)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.destinationReserve)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.observations)
+                    </td>
+                    <td>
+                        @if (item.stateReserve == 0)
+                        {
+                            <p>No Confirmado</p>
+                        }
+                        else
+                        {
+                            <p>Confirmada</p>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("AddOrEditRow", "Row", new { id = item.id })" class="btn btn-default"><i class="fa fa-pencil"></i></a> |
+                        <a onclick="Delete(@item.id);" class="btn btn-default" id="btnDelete"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+}
+
+
+@section scripts {
+    <script>
+        $(function () {
+            var successMessage = '@TempData["successMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+    </script>
+    <script>
+        function Delete(id) {
+            alertify.confirm('Users Rooms Reserver', 'Esta seguro que desea elimar el registro?', function () {
+                window.location.href = '@Url.Action("delete", "Row")/' + id;
+            },null);
+        }
+
+
+    </script>
+}

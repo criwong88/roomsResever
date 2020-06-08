@@ -1,0 +1,62 @@
+﻿@model MVCUserRoomReserver.Models.mvcUserModel
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<div >
+    <div class="jumbotron text-center">
+         @using (Html.BeginForm())
+            {
+        
+                @Html.HiddenFor(model => model.id)
+                <div class="form-group col col-md-6 offset-2">
+                    @Html.LabelFor(model => model.cc,new { @class="col col-md-3"})
+                    @Html.EditorFor(model => model.cc, new { htmlAttributes = new { @class = "col col-md-4", @type = "number" } })*
+                </div>
+                <div class="form-group col col-md-6 offset-2">
+                    @Html.LabelFor(model => model.fullName, new { @class = "col col-md-3" })
+                    @Html.EditorFor(model => model.fullName, new { @class = "col col-md-4" })*
+                </div>
+                <div class="form-group col col-md-6 offset-2">
+                    @Html.LabelFor(model => model.age, new { @class = "col col-md-3" })
+                    @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "col col-md-4", @type = "number", @min = "18", @max ="99" } })*
+                </div>
+                <div class="form-group col col-md-6 offset-2">
+                    @Html.LabelFor(model => model.phone, new { @class = "col col-md-3" })
+                    @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "col col-md-4", @type = "number" } })*
+                </div>
+                <div class="form-group col col-md-6 offset-2">
+                    @Html.LabelFor(model => model.email, new { @class = "col col-md-3" })
+                    @Html.EditorFor(model => model.email, new { @class = "col col-md-4" })*
+                </div>
+                <div class="form-group col col-md-6 offset-2">
+                    @Html.LabelFor(model => model.state, new { @class = "col col-md-3" })
+                    @Html.EditorFor(model => model.state, new { @class = "col col-md-4" })*
+                </div>
+                <div class="form-group col col-md-6 offset-2">
+                    @Html.LabelFor(model => model.city, new { @class = "col col-md-3" })
+                    @Html.EditorFor(model => model.city, new { @class = "col col-md-4" })*
+                 </div>
+                <div class="form-group col col-md-12 text-center">
+                    <input type="submit" value="Guardar" class="btn btn-info col col-md-6" />
+                </div>
+                <div class="text-center">
+                    <span class="text-center">@Html.ValidationMessageFor(model => model.cc)</span>
+                    <span class="text-center">@Html.ValidationMessageFor(model => model.fullName)</span>
+                    <span class="text-center">@Html.ValidationMessageFor(model => model.age)</span>
+                    <span class="text-center">@Html.ValidationMessageFor(model => model.phone)</span>
+                    <span class="text-center">@Html.ValidationMessageFor(model => model.email)</span>
+                    <span class="text-center">@Html.ValidationMessageFor(model => model.state)</span>
+                    <span class="text-center">@Html.ValidationMessageFor(model => model.city)</span>
+                </div>
+            }
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}
+

@@ -1,0 +1,133 @@
+﻿@model IEnumerable<MVCUserRoomReserver.Models.db_model.sp_RBD_Result>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Reservas del @ViewBag.fi  al @ViewBag.ff</h2>
+<hr />
+
+
+@using (Html.BeginForm())
+{
+    <div class="row col-md-12">
+        <div class="col col-md-3">
+            <h5>Fecha inicial:</h5>
+            <input type="datetime-local" name="fi" value="@ViewBag.fi" />
+        </div>
+        <div class="col col-md-3">
+            <h5>Fecha final:</h5>
+            <input type="datetime-local" name="ff" value="@ViewBag.ff" />
+        </div>
+        <div class="col col-md-3">
+            <br /><input type="submit" value="Filtrar" class="btn btn-info" />
+        </div>
+        <div class="col col-md-3">
+            <a href="@Url.Action("AddOrEditRow", "Row")" class="btn btn-info float-right"><i class="fa fa-plus"></i> Crear Nuevo</a> <br />
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-striped">
+        <thead class="table-heading">
+            <tr class="text-center">
+                <th>
+                    @Html.DisplayNameFor(model => model.fullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.city)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dateReserve)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.numberPerson)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.destinationReserve)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.stateReserve)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.roomName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.city)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateReserve)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numberPerson)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.destinationReserve)
+                    </td>
+                    <td>
+
+                        @if (item.stateReserve == 0)
+                        {
+                            <p>No Confirmado</p>
+                        }
+                        else
+                        {
+                            <p>Confirmada</p>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.roomName)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("AddOrEditRow", "Row", new { id = item.id })" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                        <a onclick="Delete(@item.id);" class="btn btn-default" id="btnDelete"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@section scripts {
+    <script>
+        $(function () {
+            var successMessage = '@TempData["successMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+    </script>
+    <script>
+
+        function Delete(id) {
+            alertify.confirm('Users Rooms Reserver', 'Esta seguro que desea elimar el registro?', function () {
+                window.location.href = '@Url.Action("delete", "Row")/' + id;
+            },null);
+        }
+
+    </script>
+
+} 

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="reserveRoomModelStoreContainer" CdmEntityContainer="reserveRoomEntities1">
+    <FunctionImportMapping FunctionImportName="sp_RBU" FunctionName="reserveRoomModel.Store.sp_RBU">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="reserveRoomModel.sp_RBU_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="cc" ColumnName="cc" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+          <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+          <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+          <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+          <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+          <ScalarProperty Name="roomName" ColumnName="roomName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_RBD" FunctionName="reserveRoomModel.Store.sp_RBD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="reserveRoomModel.sp_RBD_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="cc" ColumnName="cc" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+          <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+          <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+          <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+          <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+          <ScalarProperty Name="roomName" ColumnName="roomName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getRooms" FunctionName="reserveRoomModel.Store.sp_getRooms">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="reserveRoomModel.sp_getRooms_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="roomName" ColumnName="roomName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getUsers" FunctionName="reserveRoomModel.Store.sp_getUsers">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="reserveRoomModel.sp_getUsers_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

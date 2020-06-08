@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="reserveRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="rooms">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roomName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="rowsReserve">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUser" Type="int" />
+    <Property Name="idRoom" Type="int" />
+    <Property Name="dateReserve" Type="datetime" />
+    <Property Name="destinationReserve" Type="nvarchar" MaxLength="100" />
+    <Property Name="observations" Type="nvarchar" MaxLength="100" />
+    <Property Name="stateReserve" Type="int" />
+    <Property Name="numberPerson" Type="int" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="10" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="state" Type="nvarchar" MaxLength="50" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" />
+    <Property Name="age" Type="int" />
+    <Property Name="cc" Type="nvarchar" MaxLength="13" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'reserveRoom.dbo.RBU_view' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="RBU_view">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Expr1" Type="int" Nullable="false" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="100" />
+    <Property Name="cc" Type="nvarchar" MaxLength="13" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" />
+    <Property Name="dateReserve" Type="datetime" />
+    <Property Name="numberPerson" Type="int" />
+    <Property Name="destinationReserve" Type="nvarchar" MaxLength="100" />
+    <Property Name="stateReserve" Type="int" />
+    <Property Name="idRoom" Type="int" />
+    <Property Name="roomName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="sp_RBU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="p_id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="reserveRoomModelStoreContainer">
+    <EntitySet Name="rooms" EntityType="Self.rooms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rowsReserve" EntityType="Self.rowsReserve" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RBU_view" EntityType="Self.RBU_view" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[RBU_view].[id] AS [id], 
+[RBU_view].[Expr1] AS [Expr1], 
+[RBU_view].[fullName] AS [fullName], 
+[RBU_view].[cc] AS [cc], 
+[RBU_view].[city] AS [city], 
+[RBU_view].[dateReserve] AS [dateReserve], 
+[RBU_view].[numberPerson] AS [numberPerson], 
+[RBU_view].[destinationReserve] AS [destinationReserve], 
+[RBU_view].[stateReserve] AS [stateReserve], 
+[RBU_view].[idRoom] AS [idRoom], 
+[RBU_view].[roomName] AS [roomName]
+FROM [dbo].[RBU_view] AS [RBU_view]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

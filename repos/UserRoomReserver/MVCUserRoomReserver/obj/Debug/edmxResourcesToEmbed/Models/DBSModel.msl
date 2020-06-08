@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="reserveRoomModelStoreContainer" CdmEntityContainer="reserveRoomEntities">
+    <FunctionImportMapping FunctionImportName="sp_getReserveByUserId" FunctionName="reserveRoomModel.Store.sp_getReserveByUserId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="reserveRoomModel.sp_getReserveByUserId_Result">
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="cc" ColumnName="cc" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+          <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+          <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+          <ScalarProperty Name="roomName" ColumnName="roomName" />
+          <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

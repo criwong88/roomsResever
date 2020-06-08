@@ -1,0 +1,108 @@
+﻿@model IEnumerable<MVCUserRoomReserver.Models.mvcRBUModel>
+
+
+@{
+
+    ViewBag.Title = "Reservas";
+    var userData = Model.FirstOrDefault();
+    
+}
+
+@using (Html.BeginForm())
+{
+
+    <h2>@ViewBag.Title de @userData.fullName</h2>
+    <h5>Cc: @userData.cc</h5>
+    <h5>Telefono: @ViewBag.phone</h5>
+    <h5>Ciudad: @userData.city</h5>
+    
+
+    
+    <table class="table table-striped">
+        <thead class="table-heading">
+            <tr class="text-center">
+
+                <th>
+                    @Html.DisplayNameFor(model => model.dateReserve)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.numberPerson)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.destinationReserve)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.roomName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.stateReserve)
+                </th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateReserve)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numberPerson)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.destinationReserve)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.roomName)
+                    </td>
+                    <td>
+                        @if (item.stateReserve == 0)
+                        {
+                            <p>No Confirmada</p>
+                        }
+                        else
+                        {
+                            <p>Confirmada</p>
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("AddOrEditRow", "Row", new { id = item.id })" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                        <button onclick="Info(@item.)" type="button" class="btn btn-default" data-toggle="modal" data-target="#RBUModal"><i class="fa fa-eye"></i></button> |
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+}
+
+<div class="modal fade" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true" id="RBUModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Nuevo Salon</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function Info(item)
+        {
+
+        }
+    </script>
+}

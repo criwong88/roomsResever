@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="reserveRoomModelStoreContainer" CdmEntityContainer="DBModel">
+    <EntitySetMapping Name="rooms">
+      <EntityTypeMapping TypeName="reserveRoomModel.rooms">
+        <MappingFragment StoreEntitySet="rooms">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="roomName" ColumnName="roomName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rowsReserve">
+      <EntityTypeMapping TypeName="reserveRoomModel.rowsReserve">
+        <MappingFragment StoreEntitySet="rowsReserve">
+          <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+          <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+          <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+          <ScalarProperty Name="observations" ColumnName="observations" />
+          <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="reserveRoomModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="cc" ColumnName="cc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RBU_view">
+      <EntityTypeMapping TypeName="reserveRoomModel.RBU_view">
+        <MappingFragment StoreEntitySet="RBU_view">
+          <ScalarProperty Name="roomName" ColumnName="roomName" />
+          <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+          <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+          <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+          <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+          <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="cc" ColumnName="cc" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_RBU" FunctionName="reserveRoomModel.Store.sp_RBU">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="reserveRoomModel.sp_RBU_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="cc" ColumnName="cc" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+          <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+          <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+          <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+          <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+          <ScalarProperty Name="roomName" ColumnName="roomName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

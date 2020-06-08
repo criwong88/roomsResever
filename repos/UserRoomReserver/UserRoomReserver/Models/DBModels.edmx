@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="reserveRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="rooms">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roomName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="rowsReserve">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUser" Type="int" />
+          <Property Name="idRoom" Type="int" />
+          <Property Name="dateReserve" Type="datetime" />
+          <Property Name="destinationReserve" Type="nvarchar" MaxLength="100" />
+          <Property Name="observations" Type="nvarchar" MaxLength="100" />
+          <Property Name="stateReserve" Type="int" />
+          <Property Name="numberPerson" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone" Type="nvarchar" MaxLength="10" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="state" Type="nvarchar" MaxLength="50" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="age" Type="int" />
+          <Property Name="cc" Type="nvarchar" MaxLength="13" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'reserveRoom.dbo.RBU_view' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="RBU_view">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Expr1" Type="int" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="cc" Type="nvarchar" MaxLength="13" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+          <Property Name="dateReserve" Type="datetime" />
+          <Property Name="numberPerson" Type="int" />
+          <Property Name="destinationReserve" Type="nvarchar" MaxLength="100" />
+          <Property Name="stateReserve" Type="int" />
+          <Property Name="idRoom" Type="int" />
+          <Property Name="roomName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="sp_RBU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="reserveRoomModelStoreContainer">
+          <EntitySet Name="rooms" EntityType="Self.rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rowsReserve" EntityType="Self.rowsReserve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RBU_view" EntityType="Self.RBU_view" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[RBU_view].[id] AS [id], 
+[RBU_view].[Expr1] AS [Expr1], 
+[RBU_view].[fullName] AS [fullName], 
+[RBU_view].[cc] AS [cc], 
+[RBU_view].[city] AS [city], 
+[RBU_view].[dateReserve] AS [dateReserve], 
+[RBU_view].[numberPerson] AS [numberPerson], 
+[RBU_view].[destinationReserve] AS [destinationReserve], 
+[RBU_view].[stateReserve] AS [stateReserve], 
+[RBU_view].[idRoom] AS [idRoom], 
+[RBU_view].[roomName] AS [roomName]
+FROM [dbo].[RBU_view] AS [RBU_view]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="reserveRoomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="rooms">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="rowsReserve">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUser" Type="Int32" />
+          <Property Name="idRoom" Type="Int32" />
+          <Property Name="dateReserve" Type="DateTime" Precision="3" />
+          <Property Name="destinationReserve" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="observations" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="stateReserve" Type="Int32" />
+          <Property Name="numberPerson" Type="Int32" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="cc" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="rooms" EntityType="Self.rooms" />
+          <EntitySet Name="rowsReserve" EntityType="Self.rowsReserve" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="RBU_view" EntityType="reserveRoomModel.RBU_view" />
+          <FunctionImport Name="sp_RBU" ReturnType="Collection(reserveRoomModel.sp_RBU_Result)">
+            <Parameter Name="p_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="RBU_view">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Expr1" Type="Int32" Nullable="false" />
+          <Property Name="fullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cc" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateReserve" Type="DateTime" Precision="3" />
+          <Property Name="numberPerson" Type="Int32" />
+          <Property Name="destinationReserve" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="stateReserve" Type="Int32" />
+          <Property Name="idRoom" Type="Int32" />
+          <Property Name="roomName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="sp_RBU_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="Expr1" Nullable="true" />
+          <Property Type="String" Name="fullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="cc" Nullable="true" MaxLength="13" />
+          <Property Type="String" Name="city" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="dateReserve" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="numberPerson" Nullable="true" />
+          <Property Type="String" Name="destinationReserve" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="stateReserve" Nullable="true" />
+          <Property Type="Int32" Name="idRoom" Nullable="true" />
+          <Property Type="String" Name="roomName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="reserveRoomModelStoreContainer" CdmEntityContainer="DBModel">
+          <EntitySetMapping Name="rooms">
+            <EntityTypeMapping TypeName="reserveRoomModel.rooms">
+              <MappingFragment StoreEntitySet="rooms">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="roomName" ColumnName="roomName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rowsReserve">
+            <EntityTypeMapping TypeName="reserveRoomModel.rowsReserve">
+              <MappingFragment StoreEntitySet="rowsReserve">
+                <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+                <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+                <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+                <ScalarProperty Name="observations" ColumnName="observations" />
+                <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="reserveRoomModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="cc" ColumnName="cc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RBU_view">
+            <EntityTypeMapping TypeName="reserveRoomModel.RBU_view">
+              <MappingFragment StoreEntitySet="RBU_view">
+                <ScalarProperty Name="roomName" ColumnName="roomName" />
+                <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+                <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+                <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+                <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+                <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="cc" ColumnName="cc" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_RBU" FunctionName="reserveRoomModel.Store.sp_RBU">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="reserveRoomModel.sp_RBU_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="cc" ColumnName="cc" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+                <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+                <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+                <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+                <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+                <ScalarProperty Name="roomName" ColumnName="roomName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MVCUserRoomReserver.Models.db_model.sp_RBU_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Expr1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateReserve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numberPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.destinationReserve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stateReserve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idRoom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.roomName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Expr1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateReserve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numberPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.destinationReserve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stateReserve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idRoom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.roomName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

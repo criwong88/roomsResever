@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="reserveRoomModelStoreContainer" CdmEntityContainer="reserveRoomEntities1">
+    <EntitySetMapping Name="rooms">
+      <EntityTypeMapping TypeName="reserveRoomModel.rooms">
+        <MappingFragment StoreEntitySet="rooms">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="roomName" ColumnName="roomName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rowsReserve">
+      <EntityTypeMapping TypeName="reserveRoomModel.rowsReserve">
+        <MappingFragment StoreEntitySet="rowsReserve">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idRoom" ColumnName="idRoom" />
+          <ScalarProperty Name="dateReserve" ColumnName="dateReserve" />
+          <ScalarProperty Name="destinationReserve" ColumnName="destinationReserve" />
+          <ScalarProperty Name="observations" ColumnName="observations" />
+          <ScalarProperty Name="stateReserve" ColumnName="stateReserve" />
+          <ScalarProperty Name="numberPerson" ColumnName="numberPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="reserveRoomModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="cc" ColumnName="cc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

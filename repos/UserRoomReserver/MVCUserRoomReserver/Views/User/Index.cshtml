@@ -1,0 +1,107 @@
+﻿@model IEnumerable<MVCUserRoomReserver.Models.mvcUserModel>
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<br />
+
+<p>
+    <a href="@Url.Action("AddOrEdit","User")" class="btn btn-info"><i class="fa fa-plus"></i> Crear Nuevo</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.fullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.state)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.city)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.age)
+            </th>
+
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+<tr class="text-center">
+    <td>
+        @Html.DisplayFor(modelItem => item.fullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.cc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.state)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.city)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.age)
+    </td>
+
+    <td>
+
+        <a href="@Url.Action("AddOrEdit","User",new { id = item.id})" class="btn btn-default"><i class="fa fa-pencil"></i></a> |
+        <a href="@Url.Action("Index","RBU",new { idr = item.id, phone = item.phone})" class="btn btn-default"><i class="fa fa-eye"></i></a> |
+        <a onclick="newReserverByUser(@item.id,'@item.fullName');" class="btn btn-default"><i class="fa fa-plus"></i></a> |
+        <a onclick="Delete(@item.id);" class="btn btn-default" id="btnDelete"><i class="fa fa-trash"></i></a>
+    </td>
+</tr>
+    }
+
+</table>
+
+
+@section scripts {
+    <script>
+        $(function () {
+            var successMessage = '@TempData["successMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+    </script>
+    <script>
+
+        function Delete(id) {
+            alertify.confirm('Users Rooms Reserver', 'Esta seguro que desea elimar el registro?', function () {
+                window.location.href = '@Url.Action("delete", "User")/' + id;
+            },null);
+        }
+
+        function newReserverByUser(id, user) {
+            alertify.confirm('Nueva reserva', 'Esta seguro que desea Crear una nueva reserva para el cliente ' + user + ' ?', function () {
+                
+                var url = '@Url.Action("AddOrEditRowByUser", "Row")/?id=' + id +'&name='+user;
+                window.location.href = url;
+            },null);
+        }
+
+    </script>
+
+} 

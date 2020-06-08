@@ -1,0 +1,74 @@
+﻿
+@model MVCUserRoomReserver.Models.mvcRowModel
+
+@{
+    ViewBag.Title = "Reserva";
+    List<SelectListItem> roomlist = (List<SelectListItem>)ViewBag.roomlist;
+    List<SelectListItem> userlist = (List<SelectListItem>)ViewBag.userlist;
+
+}
+
+<h2>@ViewBag.Title @ViewBag.Name</h2>
+
+
+<div>
+    <div class="jumbotron text-center">
+        @using (Html.BeginForm())
+        {
+            
+             @Html.HiddenFor(model => model.id, new { @Value = 0 })
+           
+        <div class="form-group col col-md-6 offset-2">
+            @Html.LabelFor(model => model.idRoom, new { @class = "col col-md-3" })
+            @Html.DropDownList("idRoom", roomlist, "Selecione un salon", new { htmlAttributes = new { @class = "form-control col col-md-6" } })
+        </div>
+                  @Html.HiddenFor(model => model.idUser, new { @Value = ViewBag.idr })
+            <div class="form-group col col-md-6 offset-2">
+                @Html.LabelFor(model => model.dateReserve, new { @class = "col col-md-3" })
+                @Html.EditorFor(model => model.dateReserve, new { htmlAttributes = new { @class = "col col-md-6", @type = "datetime-local" } })
+            </div>
+            <div class="form-group col col-md-6 offset-2">
+                @Html.LabelFor(model => model.numberPerson, new { @class = "col col-md-3" })
+                @Html.EditorFor(model => model.numberPerson, new { htmlAttributes = new { @class = "col col-md-6" } })
+            </div>
+            <div class="form-group col col-md-6 offset-2">
+                @Html.LabelFor(model => model.destinationReserve, new { @class = "col col-md-3" })
+                @Html.DropDownListFor(model => model.destinationReserve, new MultiSelectList(new[] { "Evento empresarial", "Despedida empresa", "Desayuno comercial", "Almuerzo", "Junta", "Video Conferencia", "RRHH", "COntabilidad", "Otro" }))
+            </div>
+            <div class="form-group col col-md-6 offset-2">
+                @Html.LabelFor(model => model.observations, new { @class = "col col-md-3" })
+                @Html.EditorFor(model => model.observations, new { htmlAttributes = new { @class = "col col-md-5" } })
+            </div>
+            <div class="form-group col col-md-6 offset-2">
+                @Html.LabelFor(model => model.stateReserve, new { @class = "col col-md-3" })
+                <!-- @Html.EditorFor(model => model.stateReserve, new { @class = "col col-md-6" })-->
+                @Html.RadioButtonFor(model => model.stateReserve, 0) Sin confirmar
+                @Html.RadioButtonFor(model => model.stateReserve, 1) Confirmada
+            </div>
+            <div class="form-group col col-md-12 text-center">
+                <input type="submit" value="Guardar" class="btn btn-info col col-md-6" />
+            </div>
+            <div class="text-center">
+                @Html.ValidationMessageFor(model => model.idRoom)
+                @Html.ValidationMessageFor(model => model.idUser)
+                @Html.ValidationMessageFor(model => model.dateReserve)
+                @Html.ValidationMessageFor(model => model.numberPerson)
+                @Html.ValidationMessageFor(model => model.destinationReserve)
+                @Html.ValidationMessageFor(model => model.observations)
+                @Html.ValidationMessageFor(model => model.stateReserve)
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+
+
+    <script>
+
+
+
+    </script>
+}
+
